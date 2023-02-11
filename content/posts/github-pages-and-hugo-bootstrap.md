@@ -92,4 +92,5 @@ Here's what I did - this assumes you have a linux environment you're going to wo
 ### Troubleshooting
 
 Check the `Actions` tab on your Github repo - you should see an action with the same name as your commit comment - this is running the workflow we defined above.
-If that's erroring, you should probably fix it ;)
+If that's erroring, you should probably fix it ;) Subsequent to that you should see Github's `pages build and deployment` action - that's the Github Pages magic that actually publishes your site.
+
