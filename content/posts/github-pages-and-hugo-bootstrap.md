@@ -1,5 +1,9 @@
 ---
-title: "Github Page and Hugo"
+categories:
+    - Development
+    - Go
+    - Github
+title: "Github Pages and Hugo"
 date: 2023-02-11T14:58:15-06:00
 ---
 
