@@ -1,8 +1,4 @@
 ---
-categories:
-    - Development
-    - Go
-    - Github
 title: "Github Page and Hugo"
 date: 2023-02-11T14:58:15-06:00
 ---
