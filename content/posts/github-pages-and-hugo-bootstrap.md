@@ -1,10 +1,9 @@
 ---
-categories:
-    - Development
-    - Go
-    - Github
+tags: ["Development", "Github", "Go"]
 title: "Github Pages and Hugo"
-date: 2023-02-11T14:58:15-06:00
+date: "2023-02-11"
+author: "Voytek Jarnot"
+description: "These are the steps I followed to get a basic almost-zero-effort blog published to Github Pages. Adding posts simply requires creating/committing/pushing a new markdown file to your github repo - building the site and publishing it are completely automated."
 ---
 
 ## Extremely-basic Hugo + Github Pages Step-by-step Guide
