@@ -69,7 +69,7 @@ However, we&amp;rsquo;re going to deviate and commit our source to the &lt;code>
 &lt;li>in ~/projects/USERNAME.github.io
 &lt;ol>
 &lt;li>&lt;code>mkdir -p .github/workflows&lt;/code>&lt;/li>
-&lt;li>create .github/workflows/gh-pages.yml:
+&lt;li>create &lt;code>.github/workflows/gh-pages.yml&lt;/code>:
 &lt;pre tabindex="0">&lt;code>name: github pages
 on:
 push:
