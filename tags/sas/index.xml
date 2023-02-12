@@ -40,7 +40,7 @@ and confirm that the card you&amp;rsquo;re buying has the chip you want (and you
 &lt;/ul>
 &lt;p>For use with TrueNAS, your HBA &lt;em>&lt;strong>absolutely must&lt;/strong>&lt;/em> be in IT mode - and this is set via the firmware that your HBA is running. So - we need to flash
 the IT mode firmware to our HBA.&lt;/p>
-&lt;p>Also, there this: &lt;a href="https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/&lt;/a>
+&lt;p>Also, there&amp;rsquo;s this: &lt;a href="https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/&lt;/a>
 .
 Specifically for the LSI 9300 series, IT mode is not enough, it needs to be IT mode using the specific firmware version available for download at that link.&lt;/p>
 &lt;h2 id="flashing">Flashing&lt;/h2>
