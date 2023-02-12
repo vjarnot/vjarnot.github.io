@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on Zeroth Oughts</title><link>https://vjarnot.github.io/posts/</link><description>Recent content in Posts on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Supermicro AOC-S3008L-L8E + Noctua NF-A4x20</title><link>https://vjarnot.github.io/posts/2023-02-12-supermicro-lsi-hba-plus-noctua/</link><pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/2023-02-12-supermicro-lsi-hba-plus-noctua/</guid><description>LSI-based HBAs are designed for the airflow of a servier chassis, not a repurposed desktop PC. They run hot, and - in my opinion - should get a little cooling assistance.</description><content:encoded><![CDATA[<h2 id="supermicro-lsi-hba-fan-addition">Supermicro LSI HBA Fan Addition</h2>
-<p>When I initially installed my eBay-acquired HBA to flash its firmware, I noticed after a bit that the heatsink was <em>very</em> hot to the touch.
+<p>When I initially <a href="https://vjarnot.github.io/posts/2023-02-11-lsi-firmware-flashing/">installed my eBay-acquired HBA to flash its firmware</a>
+,
+I noticed after a bit that the heatsink was <em>very</em> hot to the touch.
 My infrared thermometer read the heatsink at over 135° F, so the heatsink was approaching 60° C; the chip will be - obviously - hotter than the heatsink.
 <strong>This was at idle with no disks plugged in.</strong> I&rsquo;ve read that these LSI chips would ultimately prefer a life at or below 55° C, so I&rsquo;ve added a fan to my HBA.</p>
+<p>I got started with Noctua fans back in the bad-old-days when computer fans were generally garbage with a few exceptions. These days, they&rsquo;re generally decent
+with a few exceptions, but inertia is a helluva drug, so I used the <a href="https://amzn.to/3If9J1I" target="_blank" rel="noopener">NF-A4x20 PWM</a>
+.</p>
 <p>I&rsquo;ve seen 3D-printed mounts, I&rsquo;ve seen screws - both into the heatsink and through the heatsink, and I&rsquo;ve seen zipties.
 I don&rsquo;t think I&rsquo;ve seen someone do their zipties as I have - around the heatsink, not the HBA, so I thought I&rsquo;d throw up some pictures in case it helps anyone.</p>
 <p><img loading="lazy" src="/images/supermicro-hba-noctua-1.jpg" type="" alt="Supermicro AOC-S3008L-L8E &#43; Noctua NF-A4x20"  /></p>
@@ -123,8 +128,8 @@ version from <a href="https://www.truenas.com/community/resources/lsi-9300-xx-fi
 </ol>
 <h2 id="additional-thoughts">Additional Thoughts</h2>
 <p>These cards are designed for server chassis running in racks in datacenters. I.e., lots and lots of airflow: fans so loud that you&rsquo;d
-never allow them in your house. So they&rsquo;ve got heatsinks but no fans on the cards, I&rsquo;ve rigged a 40mm fan (<a href="https://amzn.to/3If9J1I" target="_blank" rel="noopener">https://amzn.to/3If9J1I</a>
-) to mine,
+never allow them in your house. So they&rsquo;ve got heatsinks but no fans on the cards, I&rsquo;ve rigged a <a href="https://amzn.to/3If9J1I" target="_blank" rel="noopener">40mm fan</a>
+ to mine,
 I recommend you do the same.</p>
 ]]></content:encoded></item><item><title>Github Pages and Hugo</title><link>https://vjarnot.github.io/posts/2023-02-10-github-pages-and-hugo-bootstrap/</link><pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/2023-02-10-github-pages-and-hugo-bootstrap/</guid><description>These are the steps I followed to get a basic almost-zero-effort blog published to Github Pages. Adding posts simply requires creating/committing/pushing a new markdown file to your github repo - building the site and publishing it are completely automated.</description><content:encoded><![CDATA[<h2 id="extremely-basic-hugo--github-pages-step-by-step-guide">Extremely-basic Hugo + Github Pages Step-by-step Guide</h2>
 <h3 id="background">Background</h3>

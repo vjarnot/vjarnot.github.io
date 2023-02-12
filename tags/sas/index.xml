@@ -114,7 +114,7 @@ version from <a href="https://www.truenas.com/community/resources/lsi-9300-xx-fi
 </ol>
 <h2 id="additional-thoughts">Additional Thoughts</h2>
 <p>These cards are designed for server chassis running in racks in datacenters. I.e., lots and lots of airflow: fans so loud that you&rsquo;d
-never allow them in your house. So they&rsquo;ve got heatsinks but no fans on the cards, I&rsquo;ve rigged a 40mm fan (<a href="https://amzn.to/3If9J1I" target="_blank" rel="noopener">https://amzn.to/3If9J1I</a>
-) to mine,
+never allow them in your house. So they&rsquo;ve got heatsinks but no fans on the cards, I&rsquo;ve rigged a <a href="https://amzn.to/3If9J1I" target="_blank" rel="noopener">40mm fan</a>
+ to mine,
 I recommend you do the same.</p>
 ]]></content:encoded></item></channel></rss>
