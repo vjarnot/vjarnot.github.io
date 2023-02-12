@@ -111,5 +111,5 @@ sas3flash.efi -c 0 -list
 ## Additional Thoughts
 
 These cards are designed for server chassis running in racks in datacenters. I.e., lots and lots of airflow: fans so loud that you'd
-never allow them in your house. So they've got heatsinks but no fans on the cards, I've rigged a 40mm fan (https://amzn.to/3If9J1I) to mine, 
+never allow them in your house. So they've got heatsinks but no fans on the cards, I've rigged a [40mm fan](https://amzn.to/3If9J1I) to mine, 
 I recommend you do the same.
