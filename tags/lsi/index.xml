@@ -4,7 +4,7 @@
 or how to get your relatively-recent desktop PC to actually boot FreeDOS and work (spoiler: I don&rsquo;t go down the FreeDOS route here).</p>
 <p>If you want a real guide, read this: <a href="https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/</a>
 </p>
-<p><strong>If my rambling doesn&rsquo;t interest you, <a href="#tldr-lets-flash">skip to the good stuff</a>
+<p><strong>If my rambling doesn&rsquo;t interest you, <a href="#tldr-lets-flash">skip down to the good stuff</a>
 </strong></p>
 <h2 id="background">Background</h2>
 <p>Currently the media and other bulk-storage needs of our household are handled by an Intel Rapid Storage RAID 5 array of 4x 3TB disks sitting in my desktop PC.
