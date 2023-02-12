@@ -43,7 +43,7 @@ Here's what I did - this assumes you have a linux environment you're going to wo
     However, we're going to deviate and commit our source to the `main` branch, while publishing from the `gh-pages` branch
     * in ~/projects/USERNAME.github.io
         1. `mkdir -p .github/workflows`
-        2. create .github/workflows/gh-pages.yml:
+        2. create `.github/workflows/gh-pages.yml`:
             ```
             name: github pages
             on:
