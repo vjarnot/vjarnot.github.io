@@ -58,7 +58,7 @@ HBAs operate in one of two (that we're concerned with) modes:
 For use with TrueNAS, your HBA ***absolutely must*** be in IT mode - and this is set via the firmware that your HBA is running. So - we need to flash 
 the IT mode firmware to our HBA.
 
-Also, there this: https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/.
+Also, there's this: https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/.
 Specifically for the LSI 9300 series, IT mode is not enough, it needs to be IT mode using the specific firmware version available for download at that link.
 
 ## Flashing
