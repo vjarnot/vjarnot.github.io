@@ -70,7 +70,7 @@ We've covered the first two, regarding the third: you're going to want sas**2**f
 https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas
 
 ### TL;DR: Let's Flash!
-1. Format your USB stick to FAT32, no you **don't** need a bootable disk, just standard FAT32
+1. Format your USB stick to FAT32 *(no you **don't** need a bootable disk, just standard FAT32)*
 1. Download EFI Shell: https://github.com/pbatard/UEFI-Shell *(click on Releases and download the ISO)*
     1. Extract the ISO
     1. Make an `efi/boot` directory structure on your USB stick
