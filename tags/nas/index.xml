@@ -51,7 +51,7 @@ We&amp;rsquo;ve covered the first two, regarding the third: you&amp;rsquo;re goi
 &lt;/p>
 &lt;h3 id="tldr-lets-flash">TL;DR: Let&amp;rsquo;s Flash!&lt;/h3>
 &lt;ol>
-&lt;li>Format your USB stick to FAT32&lt;/li>
+&lt;li>Format your USB stick to FAT32, no you &lt;strong>don&amp;rsquo;t&lt;/strong> need a bootable disk, just standard FAT32&lt;/li>
 &lt;li>Download EFI Shell: &lt;a href="https://github.com/pbatard/UEFI-Shell" target="_blank" rel="noopener">https://github.com/pbatard/UEFI-Shell&lt;/a>
 &lt;em>(click on Releases and download the ISO)&lt;/em>
 &lt;ol>
