@@ -1,7 +1,7 @@
 ---
 tags: ["nas", "hba", "sas", "lsi", "9300-8i", "truenas", "datahoarder"]
 title: "LSI HBA Flashing"
-date: "2023-02-10"
+date: "2023-02-11"
 author: "Voytek Jarnot"
 description: "I recently acquired an LSI 9300-8i Supermicro HBA and needed to flash the firmware for use with TrueNAS... the process was more of a hassle than I'd expected."
 ---

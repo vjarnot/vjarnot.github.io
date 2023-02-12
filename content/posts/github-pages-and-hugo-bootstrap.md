@@ -1,7 +1,7 @@
 ---
 tags: ["github", "go", "hugo"]
 title: "Github Pages and Hugo"
-date: "2023-02-11"
+date: "2023-02-10"
 author: "Voytek Jarnot"
 description: "These are the steps I followed to get a basic almost-zero-effort blog published to Github Pages. Adding posts simply requires creating/committing/pushing a new markdown file to your github repo - building the site and publishing it are completely automated."
 ---
