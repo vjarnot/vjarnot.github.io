@@ -44,7 +44,7 @@ Here's what I did - this assumes you have a linux environment you're going to wo
     * in ~/projects/USERNAME.github.io
         1. `mkdir -p .github/workflows`
         2. create `.github/workflows/gh-pages.yml`:
-            ```
+            ```yaml
             name: github pages
             on:
               push:

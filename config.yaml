@@ -1,0 +1,33 @@
+baseURL: 'https://vjarnot.github.io/'
+title: 'Zeroth Oughts'
+theme: 'PaperModX'
+enableEmoji: true
+
+
+params:
+  # env: 'production'
+  author: 'Voytek Jarnot'
+  title: 'Zeroth Oughts'
+  description: "My notes in blog form."
+
+# PaperModX
+  DisableLanguageSwitch: true
+  ShowToc: true
+  TocSide: 'left'
+  TocOpen: true
+  ShowWordCount: true
+  ShowCodeCopyButtons: true
+  ShowPostNavLinks: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    # anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    lineNumbersInTable: true
+    noClasses: false
+    style: dracula

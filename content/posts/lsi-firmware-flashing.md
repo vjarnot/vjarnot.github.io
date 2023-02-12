@@ -10,6 +10,9 @@ description: "I recently acquired an LSI 9300-8i Supermicro HBA and needed to fl
 
 Oh, what fun we'll have: Flashing an IT-mode firmware to an LSI 9300-8i Supermicro HBA on a UEFI system.
 
+You're likely here because - like me - you're struggling to either figure out how to flash your HBA, 
+or how to get your relatively-recent desktop PC to actually boot FreeDOS and work (spoiler: I don't go down the FreeDOS route here).
+
 If you want a real guide, read this: https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/
 
 **If my rambling doesn't interest you, [skip to the good stuff](#tldr-lets-flash)**
@@ -47,7 +50,7 @@ Within that plethora, there's the 92xx series, the 93xx series, and others - thi
 I'll be using a Supermicro card with a 9300-8i chip on it, because that's the one I got on eBay. If you're heading down this path, do your research
 and confirm that the card you're buying has the chip you want (and you want that chip because you read enough on the TrueNAS forums to know it'll work).
 
-#### But seriously, why?
+### But seriously, why?
 
 This is over-simplified to a probably-dangerous point, but here goes:
 
@@ -63,8 +66,8 @@ Specifically for the LSI 9300 series, IT mode is not enough, it needs to be IT m
 
 ## Flashing
 
-#### Overview
-We need three things: the card (installed), the firmware file, the software to flash the firmware to the card, and a USB stick.
+### Overview
+We need four things: the HBA (installed), the firmware file, the software to flash the firmware to the card, and a USB stick.
 We've covered the first two, regarding the third: you're going to want sas**2**flash for 92xx cards, and sas**3**flash for 93xx cards.
 
 https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas
@@ -88,7 +91,7 @@ Now you're in an EFI shell! If it's your first time, yes, I agree, it does look 
 
 Here are the commands I used to flash my firmware:
 
-```
+```sh
 fs0:
 sas3flash.efi -listall
 sas3flash.efi -c 0 -list
@@ -96,7 +99,7 @@ sas3flash.efi -c 0 -f FILENAME
 sas3flash.efi -c 0 -list 
 ```
 
-1. `fs0:` - this is us just changing "directories" to get to our USB stick root
+1. `fs0:` - this is us just changing "directories" to get to our USB stick root *(the 0 may vary if you've got multiple USB drives plugged in)*
 1. `sas3flash.efi -listall` - you're going to want to see your HBA show up here, if it doesn't there's no point in proceeding
 1. `sas3flash.efi -c 0 -list` - I assume that, like me, there's only one HBA in your system, so we reference it as `0`
     1. This'll show you what firmware you've currently got, as well as the mode (IR or IT) your HBA is in
@@ -108,5 +111,5 @@ sas3flash.efi -c 0 -list
 ## Additional Thoughts
 
 These cards are designed for server chassis running in racks in datacenters. I.e., lots and lots of airflow: fans so loud that you'd
-never allow them in your house. So they've got heatsinks but no fans on the cards, I've rigged a 40mm fan (https://amzn.to/3If9J1I) *[affiliate]* to mine, 
+never allow them in your house. So they've got heatsinks but no fans on the cards, I've rigged a 40mm fan (https://amzn.to/3If9J1I) to mine, 
 I recommend you do the same.
