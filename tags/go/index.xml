@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go on Zeroth Oughts</title><link>https://vjarnot.github.io/tags/go/</link><description>Recent content in Go on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>Github Pages and Hugo</title><link>https://vjarnot.github.io/posts/github-pages-and-hugo-bootstrap/</link><pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/github-pages-and-hugo-bootstrap/</guid><description>Extremely-basic Hugo + Github Pages Step-by-step Guide Background https://pages.github.com/ https://gohugo.io/getting-started/quick-start/ Setup I mostly followed the steps outlined here https://gohugo.io/hosting-and-deployment/hosting-on-github/ with some minor changes.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on Zeroth Oughts</title><link>https://vjarnot.github.io/tags/go/</link><description>Recent content in go on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>Github Pages and Hugo</title><link>https://vjarnot.github.io/posts/github-pages-and-hugo-bootstrap/</link><pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/github-pages-and-hugo-bootstrap/</guid><description>Extremely-basic Hugo + Github Pages Step-by-step Guide Background https://pages.github.com/ https://gohugo.io/getting-started/quick-start/ Setup I mostly followed the steps outlined here https://gohugo.io/hosting-and-deployment/hosting-on-github/ with some minor changes.
 Here&amp;rsquo;s what I did - this assumes you have a linux environment you&amp;rsquo;re going to work in, and a github account:
 Create repo for your github pages site If you want your site available at USERNAME.github.io, ensure the repo is named USERNAME.github.io Clone the repo: git clone https://github.</description><content>&lt;h2 id="extremely-basic-hugo--github-pages-step-by-step-guide">Extremely-basic Hugo + Github Pages Step-by-step Guide&lt;/h2>
 &lt;h3 id="background">Background&lt;/h3>
 &lt;ul>
-&lt;li>&lt;a href="https://pages.github.com/">https://pages.github.com/&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://gohugo.io/getting-started/quick-start/">https://gohugo.io/getting-started/quick-start/&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/&lt;/a>
+&lt;/li>
+&lt;li>&lt;a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">https://gohugo.io/getting-started/quick-start/&lt;/a>
+&lt;/li>
 &lt;/ul>
 &lt;h3 id="setup">Setup&lt;/h3>
-&lt;p>I mostly followed the steps outlined here &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a> with some minor changes.&lt;/p>
+&lt;p>I mostly followed the steps outlined here &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a>
+with some minor changes.&lt;/p>
 &lt;p>Here&amp;rsquo;s what I did - this assumes you have a linux environment you&amp;rsquo;re going to work in, and a github account:&lt;/p>
 &lt;ol>
 &lt;li>Create repo for your github pages site
@@ -25,7 +28,8 @@ Create repo for your github pages site If you want your site available at USERNA
 &lt;li>on my Ubuntu instance, this was a simple &lt;code>apt install hugo&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>Generate site (adapted from &lt;a href="https://gohugo.io/getting-started/quick-start/">https://gohugo.io/getting-started/quick-start/&lt;/a> )
+&lt;li>Generate site (adapted from &lt;a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">https://gohugo.io/getting-started/quick-start/&lt;/a>
+)
 &lt;ul>
 &lt;li>Assuming you did the &lt;code>git clone&lt;/code> from ~/projects and you&amp;rsquo;re still in ~/projects
 &lt;ol>
@@ -57,7 +61,8 @@ Create repo for your github pages site If you want your site available at USERNA
 &lt;/ul>
 &lt;/li>
 &lt;li>Create a &lt;code>gh-pages&lt;/code> branch in your repo on github&lt;/li>
-&lt;li>Set up Github actions to auto-publish your site (adapted from &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a> )
+&lt;li>Set up Github actions to auto-publish your site (adapted from &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a>
+)
 &lt;ul>
 &lt;li>NOTE: this assumes you want your site available at &lt;code>USERNAME.github.io&lt;/code> - github expects those type of github pages to be published from the main branch.
 However, we&amp;rsquo;re going to deviate and commit our source to the &lt;code>main&lt;/code> branch, while publishing from the &lt;code>gh-pages&lt;/code> branch&lt;/li>
