@@ -1,127 +1,169 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>github on Zeroth Oughts</title><link>https://vjarnot.github.io/tags/github/</link><description>Recent content in github on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 10 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Github Pages and Hugo</title><link>https://vjarnot.github.io/posts/github-pages-and-hugo-bootstrap/</link><pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/github-pages-and-hugo-bootstrap/</guid><description>Extremely-basic Hugo + Github Pages Step-by-step Guide Background https://pages.github.com/ https://gohugo.io/getting-started/quick-start/ Setup I mostly followed the steps outlined here https://gohugo.io/hosting-and-deployment/hosting-on-github/ with some minor changes.
-Here&amp;rsquo;s what I did - this assumes you have a linux environment you&amp;rsquo;re going to work in, and a github account:
-Create repo for your github pages site If you want your site available at USERNAME.github.io, ensure the repo is named USERNAME.github.io Clone the repo: git clone https://github.</description><content>&lt;h2 id="extremely-basic-hugo--github-pages-step-by-step-guide">Extremely-basic Hugo + Github Pages Step-by-step Guide&lt;/h2>
-&lt;h3 id="background">Background&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/&lt;/a>
-&lt;/li>
-&lt;li>&lt;a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">https://gohugo.io/getting-started/quick-start/&lt;/a>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="setup">Setup&lt;/h3>
-&lt;p>I mostly followed the steps outlined here &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a>
-with some minor changes.&lt;/p>
-&lt;p>Here&amp;rsquo;s what I did - this assumes you have a linux environment you&amp;rsquo;re going to work in, and a github account:&lt;/p>
-&lt;ol>
-&lt;li>Create repo for your github pages site
-&lt;ul>
-&lt;li>If you want your site available at &lt;code>USERNAME.github.io&lt;/code>, ensure the repo is named &lt;code>USERNAME.github.io&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Clone the repo:
-&lt;ul>
-&lt;li>&lt;code>git clone https://github.com/USERNAME/USERNAME.github.io&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Install Hugo
-&lt;ul>
-&lt;li>on my Ubuntu instance, this was a simple &lt;code>apt install hugo&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Generate site (adapted from &lt;a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">https://gohugo.io/getting-started/quick-start/&lt;/a>
-)
-&lt;ul>
-&lt;li>Assuming you did the &lt;code>git clone&lt;/code> from ~/projects and you&amp;rsquo;re still in ~/projects
-&lt;ol>
-&lt;li>&lt;code>hugo new site USERNAME.github.io --force&lt;/code>
-&lt;ul>
-&lt;li>&lt;code>--force&lt;/code> is here because the &lt;code>USERNAME.github.io&lt;/code> directory already exists&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;code>cd USERNAME.github.io&lt;/code>&lt;/li>
-&lt;li>Install a theme
-&lt;ul>
-&lt;li>&lt;code>git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke themes/ananke&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Create a hello-world blog post
-&lt;ul>
-&lt;li>&lt;code>hugo new posts/hello-world.md&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Edit hello-world.md and remove &lt;code>draft: true&lt;/code>&lt;/li>
-&lt;li>Test site
-&lt;ul>
-&lt;li>run &lt;code>hugo server&lt;/code>&lt;/li>
-&lt;li>open localhost:1313 in a browser&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Create a &lt;code>gh-pages&lt;/code> branch in your repo on github&lt;/li>
-&lt;li>Set up Github actions to auto-publish your site (adapted from &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a>
-)
-&lt;ul>
-&lt;li>NOTE: this assumes you want your site available at &lt;code>USERNAME.github.io&lt;/code> - github expects those type of github pages to be published from the main branch.
-However, we&amp;rsquo;re going to deviate and commit our source to the &lt;code>main&lt;/code> branch, while publishing from the &lt;code>gh-pages&lt;/code> branch&lt;/li>
-&lt;li>in ~/projects/USERNAME.github.io
-&lt;ol>
-&lt;li>&lt;code>mkdir -p .github/workflows&lt;/code>&lt;/li>
-&lt;li>create &lt;code>.github/workflows/gh-pages.yml&lt;/code>:
-&lt;pre tabindex="0">&lt;code>name: github pages
-on:
-push:
-branches:
-- main # Set a branch that will trigger a deployment
-pull_request:
-jobs:
-deploy:
-permissions:
-contents: write
-runs-on: ubuntu-22.04
-steps:
-- uses: actions/checkout@v3
-with:
-submodules: true # Fetch Hugo themes (true OR recursive)
-fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
-- name: Setup Hugo
-uses: peaceiris/actions-hugo@v2
-with:
-hugo-version: &amp;#39;latest&amp;#39;
-# extended: true
-- name: Build
-run: hugo --minify
-- name: Deploy
-uses: peaceiris/actions-gh-pages@v3
-if: github.ref == &amp;#39;refs/heads/main&amp;#39;
-with:
-github_token: ${{ secrets.GITHUB_TOKEN }}
-publish_dir: ./public
-&lt;/code>&lt;/pre>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Remember how I mentioned that github pages wants to publish from your &lt;code>main&lt;/code> branch? Let&amp;rsquo;s change that:
-&lt;ul>
-&lt;li>On your github repo, click Settings, then Pages&lt;/li>
-&lt;li>Under Build and Deployment, select &lt;code>gh-pages&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Success?
-&lt;ul>
-&lt;li>What you should have now is the following setup:
-&lt;ol>
-&lt;li>You checkout, edit, commit, and push to &lt;code>main&lt;/code>&lt;/li>
-&lt;li>Your github action executes on push, generates your site, and commits that output to &lt;code>gh-pages&lt;/code>&lt;/li>
-&lt;li>Github sees the commit to &lt;code>gh-pages&lt;/code> and publishes your site&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;h3 id="troubleshooting">Troubleshooting&lt;/h3>
-&lt;p>Check the &lt;code>Actions&lt;/code> tab on your Github repo - you should see an action with the same name as your commit comment - this is running the workflow we defined above.
-If that&amp;rsquo;s erroring, you should probably fix it ;) Subsequent to that you should see Github&amp;rsquo;s &lt;code>pages build and deployment&lt;/code> action - that&amp;rsquo;s the Github Pages magic that actually publishes your site.&lt;/p></content></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>github on Zeroth Oughts</title><link>https://vjarnot.github.io/tags/github/</link><description>Recent content in github on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 10 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Github Pages and Hugo</title><link>https://vjarnot.github.io/posts/github-pages-and-hugo-bootstrap/</link><pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/github-pages-and-hugo-bootstrap/</guid><description>These are the steps I followed to get a basic almost-zero-effort blog published to Github Pages. Adding posts simply requires creating/committing/pushing a new markdown file to your github repo - building the site and publishing it are completely automated.</description><content:encoded><![CDATA[<h2 id="extremely-basic-hugo--github-pages-step-by-step-guide">Extremely-basic Hugo + Github Pages Step-by-step Guide</h2>
+<h3 id="background">Background</h3>
+<ul>
+<li><a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/</a>
+</li>
+<li><a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">https://gohugo.io/getting-started/quick-start/</a>
+</li>
+</ul>
+<h3 id="setup">Setup</h3>
+<p>I mostly followed the steps outlined here <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a>
+ with some minor changes.</p>
+<p>Here&rsquo;s what I did - this assumes you have a linux environment you&rsquo;re going to work in, and a github account:</p>
+<ol>
+<li>Create repo for your github pages site
+<ul>
+<li>If you want your site available at <code>USERNAME.github.io</code>, ensure the repo is named <code>USERNAME.github.io</code></li>
+</ul>
+</li>
+<li>Clone the repo:
+<ul>
+<li><code>git clone https://github.com/USERNAME/USERNAME.github.io</code></li>
+</ul>
+</li>
+<li>Install Hugo
+<ul>
+<li>on my Ubuntu instance, this was a simple <code>apt install hugo</code></li>
+</ul>
+</li>
+<li>Generate site (adapted from <a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">https://gohugo.io/getting-started/quick-start/</a>
+ )
+<ul>
+<li>Assuming you did the <code>git clone</code> from ~/projects and you&rsquo;re still in ~/projects
+<ol>
+<li><code>hugo new site USERNAME.github.io --force</code>
+<ul>
+<li><code>--force</code> is here because the <code>USERNAME.github.io</code> directory already exists</li>
+</ul>
+</li>
+<li><code>cd USERNAME.github.io</code></li>
+<li>Install a theme
+<ul>
+<li><code>git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke themes/ananke</code></li>
+</ul>
+</li>
+<li>Create a hello-world blog post
+<ul>
+<li><code>hugo new posts/hello-world.md</code></li>
+</ul>
+</li>
+<li>Edit hello-world.md and remove <code>draft: true</code></li>
+<li>Test site
+<ul>
+<li>run <code>hugo server</code></li>
+<li>open localhost:1313 in a browser</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Create a <code>gh-pages</code> branch in your repo on github</li>
+<li>Set up Github actions to auto-publish your site (adapted from <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a>
+ )
+<ul>
+<li>NOTE: this assumes you want your site available at <code>USERNAME.github.io</code> - github expects those type of github pages to be published from the main branch.
+However, we&rsquo;re going to deviate and commit our source to the <code>main</code> branch, while publishing from the <code>gh-pages</code> branch</li>
+<li>in ~/projects/USERNAME.github.io
+<ol>
+<li><code>mkdir -p .github/workflows</code></li>
+<li>create <code>.github/workflows/gh-pages.yml</code>:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">github pages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">main </span><span class="w"> </span><span class="c"># Set a branch that will trigger a deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">permissions</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l">write</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-22.04</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">submodules</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span><span class="c"># Fetch Hugo themes (true OR recursive)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">    </span><span class="c"># Fetch all history for .GitInfo and .Lastmod</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Hugo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-hugo@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">hugo-version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;latest&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="c"># extended: true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hugo --minify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-gh-pages@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">github.ref == &#39;refs/heads/main&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.GITHUB_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l">./public</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Remember how I mentioned that github pages wants to publish from your <code>main</code> branch? Let&rsquo;s change that:
+<ul>
+<li>On your github repo, click Settings, then Pages</li>
+<li>Under Build and Deployment, select <code>gh-pages</code></li>
+</ul>
+</li>
+<li>Success?
+<ul>
+<li>What you should have now is the following setup:
+<ol>
+<li>You checkout, edit, commit, and push to <code>main</code></li>
+<li>Your github action executes on push, generates your site, and commits that output to <code>gh-pages</code></li>
+<li>Github sees the commit to <code>gh-pages</code> and publishes your site</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>Check the <code>Actions</code> tab on your Github repo - you should see an action with the same name as your commit comment - this is running the workflow we defined above.
+If that&rsquo;s erroring, you should probably fix it ;) Subsequent to that you should see Github&rsquo;s <code>pages build and deployment</code> action - that&rsquo;s the Github Pages magic that actually publishes your site.</p>
+]]></content:encoded></item></channel></rss>

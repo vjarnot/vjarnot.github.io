@@ -1,107 +1,120 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>lsi on Zeroth Oughts</title><link>https://vjarnot.github.io/tags/lsi/</link><description>Recent content in lsi on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/tags/lsi/index.xml" rel="self" type="application/rss+xml"/><item><title>LSI HBA Flashing</title><link>https://vjarnot.github.io/posts/lsi-firmware-flashing/</link><pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/lsi-firmware-flashing/</guid><description>LSI HBA IT-mode Firmware Flashing Oh, what fun we&amp;rsquo;ll have: Flashing an IT-mode firmware to an LSI 9300-8i Supermicro HBA on a UEFI system.
-If you want a real guide, read this: https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/ If my rambling doesn&amp;rsquo;t interest you, skip to the good stuff Background Currently the media and other bulk-storage needs of our household are handled by an Intel Rapid Storage RAID 5 array of 4x 3TB disks sitting in my desktop PC.</description><content>&lt;h2 id="lsi-hba-it-mode-firmware-flashing">LSI HBA IT-mode Firmware Flashing&lt;/h2>
-&lt;p>Oh, what fun we&amp;rsquo;ll have: Flashing an IT-mode firmware to an LSI 9300-8i Supermicro HBA on a UEFI system.&lt;/p>
-&lt;p>If you want a real guide, read this: &lt;a href="https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/&lt;/a>
-&lt;/p>
-&lt;p>&lt;strong>If my rambling doesn&amp;rsquo;t interest you, &lt;a href="#tldr-lets-flash">skip to the good stuff&lt;/a>
-&lt;/strong>&lt;/p>
-&lt;h2 id="background">Background&lt;/h2>
-&lt;p>Currently the media and other bulk-storage needs of our household are handled by an Intel Rapid Storage RAID 5 array of 4x 3TB disks sitting in my desktop PC.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>lsi on Zeroth Oughts</title><link>https://vjarnot.github.io/tags/lsi/</link><description>Recent content in lsi on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/tags/lsi/index.xml" rel="self" type="application/rss+xml"/><item><title>LSI HBA Flashing</title><link>https://vjarnot.github.io/posts/lsi-firmware-flashing/</link><pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/lsi-firmware-flashing/</guid><description>I recently acquired an LSI 9300-8i Supermicro HBA and needed to flash the firmware for use with TrueNAS... the process was more of a hassle than I&amp;#39;d expected.</description><content:encoded><![CDATA[<h2 id="lsi-hba-it-mode-firmware-flashing">LSI HBA IT-mode Firmware Flashing</h2>
+<p>Oh, what fun we&rsquo;ll have: Flashing an IT-mode firmware to an LSI 9300-8i Supermicro HBA on a UEFI system.</p>
+<p>You&rsquo;re likely here because - like me - you&rsquo;re struggling to either figure out how to flash your HBA,
+or how to get your relatively-recent desktop PC to actually boot FreeDOS and work (spoiler: I don&rsquo;t go down the FreeDOS route here).</p>
+<p>If you want a real guide, read this: <a href="https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/</a>
+</p>
+<p><strong>If my rambling doesn&rsquo;t interest you, <a href="#tldr-lets-flash">skip to the good stuff</a>
+</strong></p>
+<h2 id="background">Background</h2>
+<p>Currently the media and other bulk-storage needs of our household are handled by an Intel Rapid Storage RAID 5 array of 4x 3TB disks sitting in my desktop PC.
 This arrangement may sound impressive if your concept of bulk storage is limited to finding yet another cheap external hard drive to plug in,
-but is laughable to the NAS-enthusiast community.&lt;/p>
-&lt;p>Given that it&amp;rsquo;s time for a new PC for myself, I got to thinking about acquiring a &amp;lsquo;proper&amp;rsquo; consumer-grade NAS to untether my day-to-day computer from its
+but is laughable to the NAS-enthusiast community.</p>
+<p>Given that it&rsquo;s time for a new PC for myself, I got to thinking about acquiring a &lsquo;proper&rsquo; consumer-grade NAS to untether my day-to-day computer from its
 NAS-ish duties. As tends to happen, the rabbit-hole of research led to me learn a bit about Synology and its competitors, work out a game-plan, get an Amazon
-shopping cart populated and ready to go, and completely change my mind and reverse course.&lt;/p>
-&lt;p>Enter the new plan: build myself a new PC, repurpose current PC to serve as a NAS. Enter TrueNAS: &lt;a href="https://www.truenas.com/truenas-scale/" target="_blank" rel="noopener">https://www.truenas.com/truenas-scale/&lt;/a>
-&lt;/p>
-&lt;h2 id="so-what">So what?&lt;/h2>
-&lt;p>So the recommended approaches for TrueNAS are&lt;/p>
-&lt;ul>
-&lt;li>Buy a box from iXsystems&lt;/li>
-&lt;li>Buy a server on eBay, modify as/if needed, and install TrueNAS&lt;/li>
-&lt;/ul>
-&lt;p>Those don&amp;rsquo;t meet my goal of repurposing my existing desktop PC, so I&amp;rsquo;ll be going with the &lt;strong>not&lt;/strong>-particularly-recommended route of:&lt;/p>
-&lt;ul>
-&lt;li>Do what you can to a PC to make it TrueNAS-viable &lt;em>(for home use, if you&amp;rsquo;re doing this professionally, close this browser tab immediately)&lt;/em>.&lt;/li>
-&lt;/ul>
-&lt;p>So under the guise of doing what&amp;rsquo;s reasonable to make this not suck, I&amp;rsquo;ll be reusing the PC, but hooking up new HDDs to a Host Bus Adapater (HBA) rather
-than directly to the SATA ports of my motherboard.&lt;/p>
-&lt;h2 id="so-why-are-we-flashing-firmware">So why are we flashing firmware?&lt;/h2>
-&lt;p>The canonically-recommended HBAs for TrueNAS are those that utilize LSI chips. A ton of different manufacturers have made HBAs with these chips.
-Within that plethora, there&amp;rsquo;s the 92xx series, the 93xx series, and others - this is definitely &lt;em>not&lt;/em> the place to learn all about LSI HBAs.&lt;/p>
-&lt;p>I&amp;rsquo;ll be using a Supermicro card with a 9300-8i chip on it, because that&amp;rsquo;s the one I got on eBay. If you&amp;rsquo;re heading down this path, do your research
-and confirm that the card you&amp;rsquo;re buying has the chip you want (and you want that chip because you read enough on the TrueNAS forums to know it&amp;rsquo;ll work).&lt;/p>
-&lt;h4 id="but-seriously-why">But seriously, why?&lt;/h4>
-&lt;p>This is over-simplified to a probably-dangerous point, but here goes:&lt;/p>
-&lt;p>HBAs operate in one of two (that we&amp;rsquo;re concerned with) modes:&lt;/p>
-&lt;ul>
-&lt;li>IR: RAID mode &lt;strong>[no bueno]&lt;/strong>&lt;/li>
-&lt;li>IT: not RAID mode &lt;strong>[yes bueno]&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>For use with TrueNAS, your HBA &lt;em>&lt;strong>absolutely must&lt;/strong>&lt;/em> be in IT mode - and this is set via the firmware that your HBA is running. So - we need to flash
-the IT mode firmware to our HBA.&lt;/p>
-&lt;p>Also, there&amp;rsquo;s this: &lt;a href="https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/&lt;/a>
+shopping cart populated and ready to go, and completely change my mind and reverse course.</p>
+<p>Enter the new plan: build myself a new PC, repurpose current PC to serve as a NAS. Enter TrueNAS: <a href="https://www.truenas.com/truenas-scale/" target="_blank" rel="noopener">https://www.truenas.com/truenas-scale/</a>
+</p>
+<h2 id="so-what">So what?</h2>
+<p>So the recommended approaches for TrueNAS are</p>
+<ul>
+<li>Buy a box from iXsystems</li>
+<li>Buy a server on eBay, modify as/if needed, and install TrueNAS</li>
+</ul>
+<p>Those don&rsquo;t meet my goal of repurposing my existing desktop PC, so I&rsquo;ll be going with the <strong>not</strong>-particularly-recommended route of:</p>
+<ul>
+<li>Do what you can to a PC to make it TrueNAS-viable <em>(for home use, if you&rsquo;re doing this professionally, close this browser tab immediately)</em>.</li>
+</ul>
+<p>So under the guise of doing what&rsquo;s reasonable to make this not suck, I&rsquo;ll be reusing the PC, but hooking up new HDDs to a Host Bus Adapater (HBA) rather
+than directly to the SATA ports of my motherboard.</p>
+<h2 id="so-why-are-we-flashing-firmware">So why are we flashing firmware?</h2>
+<p>The canonically-recommended HBAs for TrueNAS are those that utilize LSI chips. A ton of different manufacturers have made HBAs with these chips.
+Within that plethora, there&rsquo;s the 92xx series, the 93xx series, and others - this is definitely <em>not</em> the place to learn all about LSI HBAs.</p>
+<p>I&rsquo;ll be using a Supermicro card with a 9300-8i chip on it, because that&rsquo;s the one I got on eBay. If you&rsquo;re heading down this path, do your research
+and confirm that the card you&rsquo;re buying has the chip you want (and you want that chip because you read enough on the TrueNAS forums to know it&rsquo;ll work).</p>
+<h3 id="but-seriously-why">But seriously, why?</h3>
+<p>This is over-simplified to a probably-dangerous point, but here goes:</p>
+<p>HBAs operate in one of two (that we&rsquo;re concerned with) modes:</p>
+<ul>
+<li>IR: RAID mode <strong>[no bueno]</strong></li>
+<li>IT: not RAID mode <strong>[yes bueno]</strong></li>
+</ul>
+<p>For use with TrueNAS, your HBA <em><strong>absolutely must</strong></em> be in IT mode - and this is set via the firmware that your HBA is running. So - we need to flash
+the IT mode firmware to our HBA.</p>
+<p>Also, there&rsquo;s this: <a href="https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/</a>
 .
-Specifically for the LSI 9300 series, IT mode is not enough, it needs to be IT mode using the specific firmware version available for download at that link.&lt;/p>
-&lt;h2 id="flashing">Flashing&lt;/h2>
-&lt;h4 id="overview">Overview&lt;/h4>
-&lt;p>We need three things: the card (installed), the firmware file, the software to flash the firmware to the card, and a USB stick.
-We&amp;rsquo;ve covered the first two, regarding the third: you&amp;rsquo;re going to want sas&lt;strong>2&lt;/strong>flash for 92xx cards, and sas&lt;strong>3&lt;/strong>flash for 93xx cards.&lt;/p>
-&lt;p>&lt;a href="https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas" target="_blank" rel="noopener">https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas&lt;/a>
-&lt;/p>
-&lt;h3 id="tldr-lets-flash">TL;DR: Let&amp;rsquo;s Flash!&lt;/h3>
-&lt;ol>
-&lt;li>Format your USB stick to FAT32 &lt;em>(no you &lt;strong>don&amp;rsquo;t&lt;/strong> need a bootable disk, just standard FAT32)&lt;/em>&lt;/li>
-&lt;li>Download EFI Shell: &lt;a href="https://github.com/pbatard/UEFI-Shell" target="_blank" rel="noopener">https://github.com/pbatard/UEFI-Shell&lt;/a>
-&lt;em>(click on Releases and download the ISO)&lt;/em>
-&lt;ol>
-&lt;li>Extract the ISO&lt;/li>
-&lt;li>Make an &lt;code>efi/boot&lt;/code> directory structure on your USB stick&lt;/li>
-&lt;li>Copy &lt;code>bootx64.efi&lt;/code> from the ISO to &lt;code>/efi/boot/&lt;/code> on the USB stick&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Download sas3flash.efi (or sas2flash.efi if you&amp;rsquo;re flashing a 92xx card):
-&lt;a href="https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas" target="_blank" rel="noopener">https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas&lt;/a>
-&lt;em>(very bottom of the page, note we want the EFI version)&lt;/em>
-&lt;ol>
-&lt;li>Copy &lt;code>sas3flash.efi&lt;/code> to the root directory of your USB stick&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Acquire firmware - you can probably find this on Broadcom&amp;rsquo;s site, after much googling and reading the TrueNAS forums for the right link for your card. Or use the
-version from &lt;a href="https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/&lt;/a>
-if you&amp;rsquo;ve got a 9300-xx card.
-&lt;ol>
-&lt;li>Copy &lt;code>SAS9300_8i_IT.bin&lt;/code> &lt;em>(find the file that matches the chip on your card)&lt;/em> to the root directory of your USB stick&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Disable secure boot in your BIOS &lt;em>(on my ASUS mb, this required getting into the Advanced settings)&lt;/em>&lt;/li>
-&lt;li>Boot your USB stick&lt;/li>
-&lt;/ol>
-&lt;p>Now you&amp;rsquo;re in an EFI shell! If it&amp;rsquo;s your first time, yes, I agree, it does look like an OS from the 80s.&lt;/p>
-&lt;p>Here are the commands I used to flash my firmware:&lt;/p>
-&lt;pre tabindex="0">&lt;code>fs0:
-sas3flash.efi -listall
-sas3flash.efi -c 0 -list
-sas3flash.efi -c 0 -f FILENAME
-sas3flash.efi -c 0 -list
-&lt;/code>&lt;/pre>&lt;ol>
-&lt;li>&lt;code>fs0:&lt;/code> - this is us just changing &amp;ldquo;directories&amp;rdquo; to get to our USB stick root&lt;/li>
-&lt;li>&lt;code>sas3flash.efi -listall&lt;/code> - you&amp;rsquo;re going to want to see your HBA show up here, if it doesn&amp;rsquo;t there&amp;rsquo;s no point in proceeding&lt;/li>
-&lt;li>&lt;code>sas3flash.efi -c 0 -list&lt;/code> - I assume that, like me, there&amp;rsquo;s only one HBA in your system, so we reference it as &lt;code>0&lt;/code>
-&lt;ol>
-&lt;li>This&amp;rsquo;ll show you what firmware you&amp;rsquo;ve currently got, as well as the mode (IR or IT) your HBA is in&lt;/li>
-&lt;li>While you&amp;rsquo;re here, write down your SAS address, it may come in handy&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>&lt;code>sas3flash.efi -c 0 -f FILENAME&lt;/code>
-&lt;ol>
-&lt;li>This is where the magic happens, in my case FILENAME was &lt;code>SAS9300_8i_IT.bin&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>&lt;code>sas3flash.efi -c 0 -list&lt;/code> - Confirmation: check that your firmware version is what you want it to be, and that you&amp;rsquo;re in IT mode&lt;/li>
-&lt;/ol>
-&lt;h2 id="additional-thoughts">Additional Thoughts&lt;/h2>
-&lt;p>These cards are designed for server chassis running in racks in datacenters. I.e., lots and lots of airflow: fans so loud that you&amp;rsquo;d
-never allow them in your house. So they&amp;rsquo;ve got heatsinks but no fans on the cards, I&amp;rsquo;ve rigged a 40mm fan (&lt;a href="https://amzn.to/3If9J1I" target="_blank" rel="noopener">https://amzn.to/3If9J1I&lt;/a>
-) &lt;em>[affiliate]&lt;/em> to mine,
-I recommend you do the same.&lt;/p></content></item></channel></rss>
+Specifically for the LSI 9300 series, IT mode is not enough, it needs to be IT mode using the specific firmware version available for download at that link.</p>
+<h2 id="flashing">Flashing</h2>
+<h3 id="overview">Overview</h3>
+<p>We need four things: the HBA (installed), the firmware file, the software to flash the firmware to the card, and a USB stick.
+We&rsquo;ve covered the first two, regarding the third: you&rsquo;re going to want sas<strong>2</strong>flash for 92xx cards, and sas<strong>3</strong>flash for 93xx cards.</p>
+<p><a href="https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas" target="_blank" rel="noopener">https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas</a>
+</p>
+<h3 id="tldr-lets-flash">TL;DR: Let&rsquo;s Flash!</h3>
+<ol>
+<li>Format your USB stick to FAT32 <em>(no you <strong>don&rsquo;t</strong> need a bootable disk, just standard FAT32)</em></li>
+<li>Download EFI Shell: <a href="https://github.com/pbatard/UEFI-Shell" target="_blank" rel="noopener">https://github.com/pbatard/UEFI-Shell</a>
+ <em>(click on Releases and download the ISO)</em>
+<ol>
+<li>Extract the ISO</li>
+<li>Make an <code>efi/boot</code> directory structure on your USB stick</li>
+<li>Copy <code>bootx64.efi</code> from the ISO to <code>/efi/boot/</code> on the USB stick</li>
+</ol>
+</li>
+<li>Download sas3flash.efi (or sas2flash.efi if you&rsquo;re flashing a 92xx card):
+<a href="https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas" target="_blank" rel="noopener">https://www.broadcom.com/support/knowledgebase/1211161501344/flashing-firmware-and-bios-on-lsi-sas-hbas</a>
+ <em>(very bottom of the page, note we want the EFI version)</em>
+<ol>
+<li>Copy <code>sas3flash.efi</code> to the root directory of your USB stick</li>
+</ol>
+</li>
+<li>Acquire firmware - you can probably find this on Broadcom&rsquo;s site, after much googling and reading the TrueNAS forums for the right link for your card. Or use the
+version from <a href="https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/" target="_blank" rel="noopener">https://www.truenas.com/community/resources/lsi-9300-xx-firmware-update.145/</a>
+ if you&rsquo;ve got a 9300-xx card.
+<ol>
+<li>Copy <code>SAS9300_8i_IT.bin</code> <em>(find the file that matches the chip on your card)</em> to the root directory of your USB stick</li>
+</ol>
+</li>
+<li>Disable secure boot in your BIOS <em>(on my ASUS mb, this required getting into the Advanced settings)</em></li>
+<li>Boot your USB stick</li>
+</ol>
+<p>Now you&rsquo;re in an EFI shell! If it&rsquo;s your first time, yes, I agree, it does look like an OS from the 80s.</p>
+<p>Here are the commands I used to flash my firmware:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">fs0:
+</span></span><span class="line"><span class="cl">sas3flash.efi -listall
+</span></span><span class="line"><span class="cl">sas3flash.efi -c <span class="m">0</span> -list
+</span></span><span class="line"><span class="cl">sas3flash.efi -c <span class="m">0</span> -f FILENAME
+</span></span><span class="line"><span class="cl">sas3flash.efi -c <span class="m">0</span> -list 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>fs0:</code> - this is us just changing &ldquo;directories&rdquo; to get to our USB stick root <em>(the 0 may vary if you&rsquo;ve got multiple USB drives plugged in)</em></li>
+<li><code>sas3flash.efi -listall</code> - you&rsquo;re going to want to see your HBA show up here, if it doesn&rsquo;t there&rsquo;s no point in proceeding</li>
+<li><code>sas3flash.efi -c 0 -list</code> - I assume that, like me, there&rsquo;s only one HBA in your system, so we reference it as <code>0</code>
+<ol>
+<li>This&rsquo;ll show you what firmware you&rsquo;ve currently got, as well as the mode (IR or IT) your HBA is in</li>
+<li>While you&rsquo;re here, write down your SAS address, it may come in handy</li>
+</ol>
+</li>
+<li><code>sas3flash.efi -c 0 -f FILENAME</code>
+<ol>
+<li>This is where the magic happens, in my case FILENAME was <code>SAS9300_8i_IT.bin</code></li>
+</ol>
+</li>
+<li><code>sas3flash.efi -c 0 -list</code> - Confirmation: check that your firmware version is what you want it to be, and that you&rsquo;re in IT mode</li>
+</ol>
+<h2 id="additional-thoughts">Additional Thoughts</h2>
+<p>These cards are designed for server chassis running in racks in datacenters. I.e., lots and lots of airflow: fans so loud that you&rsquo;d
+never allow them in your house. So they&rsquo;ve got heatsinks but no fans on the cards, I&rsquo;ve rigged a 40mm fan (<a href="https://amzn.to/3If9J1I" target="_blank" rel="noopener">https://amzn.to/3If9J1I</a>
+) to mine,
+I recommend you do the same.</p>
+]]></content:encoded></item></channel></rss>
