@@ -15,7 +15,7 @@ or how to get your relatively-recent desktop PC to actually boot FreeDOS and wor
 
 If you want a real guide, read this: https://www.truenas.com/community/resources/detailed-newcomers-guide-to-crossflashing-lsi-9211-9300-9305-9311-9400-94xx-hba-and-variants.54/
 
-**If my rambling doesn't interest you, [skip to the good stuff](#tldr-lets-flash)**
+**If my rambling doesn't interest you, [skip down to the good stuff](#tldr-lets-flash)**
 
 ## Background
 

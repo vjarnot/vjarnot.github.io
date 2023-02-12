@@ -16,6 +16,105 @@ description: "These are the steps I followed to get a basic almost-zero-effort b
 
 I mostly followed the steps outlined here https://gohugo.io/hosting-and-deployment/hosting-on-github/ with some minor changes.
 
+Here's what I did (this assumes you have a linux environment you're going to work in, and a github account):
+
+#### Foundation
+
+1. Create repo for your github pages site
+    * If you want your site available at `USERNAME.github.io`, the repo 
+    [**must be named**](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites) `USERNAME.github.io`
+1. Clone the repo:
+    * `git clone https://github.com/USERNAME/USERNAME.github.io`
+1. Install Hugo
+    * on my Ubuntu instance, this was a simple `sudo apt install hugo`
+
+#### Create Site
+
+Generate your site *(adapted from https://gohugo.io/getting-started/quick-start/)*
+     
+*This assumes that you did the `git clone` from ~/projects and you're still in ~/projects*
+
+  1. `hugo new site USERNAME.github.io --force`
+      * `--force` is here because the `USERNAME.github.io` directory already exists
+  1. `cd USERNAME.github.io`
+  1. Install a theme
+      * `git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke themes/ananke`
+  1. Create a hello-world blog post
+      * `hugo new posts/hello-world.md`
+  1. Edit hello-world.md and remove `draft: true`
+  1. Test site
+      * run `hugo server`
+      * open localhost:1313 in a browser
+
+#### Github Pages Integration
+
+*NOTE: this assumes you want your site available at `USERNAME.github.io` - github expects those type of github pages to be published from the main branch.
+However, we're going to deviate and commit our source to the `main` branch, while publishing from the `gh-pages` branch*
+
+First create a `gh-pages` branch in your repo on github. You'll never need to check out this branch - all your work will be done in `main`, 
+but the Github action we create below will build your site and commit it to `gh-pages` and Github will be configured to publish from `gh-pages`.
+
+These steps are adapted from https://gohugo.io/hosting-and-deployment/hosting-on-github/
+
+1. `mkdir -p .github/workflows` in your project root (in the example used throughout, that would be `~/projects/USERNAME.github.io`)
+1. create `.github/workflows/gh-pages.yml`:
+    ```yaml
+    name: github pages
+    on:
+      push:
+        branches:
+          - main  # Set a branch that will trigger a deployment
+      pull_request:
+
+    jobs:
+      deploy:
+        permissions:
+          contents: write
+        runs-on: ubuntu-22.04
+        steps:
+          - uses: actions/checkout@v3
+            with:
+              submodules: true  # Fetch Hugo themes (true OR recursive)
+              fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+          - name: Setup Hugo
+            uses: peaceiris/actions-hugo@v2
+            with:
+              hugo-version: 'latest'
+              # extended: true
+
+          - name: Build
+            run: hugo --minify
+
+          - name: Deploy
+            uses: peaceiris/actions-gh-pages@v3
+            if: github.ref == 'refs/heads/main'
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              publish_dir: ./public
+    ```
+    ***You can find this yaml in the Hugo Docs, but I had to add lines 10-11 to get this working.***
+1. Remember how I mentioned that github pages wants to publish from your `main` branch? Let's change that:
+    * On your github repo, click Settings, then Pages
+    * Under Build and Deployment, select `gh-pages`
+
+#### Success? Success!
+What you should have now is a very simple and streamlined workflow:
+  1. You checkout, edit, commit, and push to the `main` branch
+  1. Your github action executes on push, generates your site, and commits that output to the `gh-pages` branch
+  1. Github sees the commit to `gh-pages` and publishes your site
+
+### Troubleshooting
+
+Check the `Actions` tab on your Github repo - you should see an action with the same name as your commit comment - this is running the workflow we defined above.
+If that's erroring, you should probably fix it ;) Subsequent to that you should see Github's `pages build and deployment` action - that's the Github Pages magic that actually publishes your site.
+
+
+
+<!-- ### Setup
+
+I mostly followed the steps outlined here https://gohugo.io/hosting-and-deployment/hosting-on-github/ with some minor changes.
+
 Here's what I did - this assumes you have a linux environment you're going to work in, and a github account:
 
 1. Create repo for your github pages site
@@ -79,6 +178,7 @@ Here's what I did - this assumes you have a linux environment you're going to wo
                       github_token: ${{ secrets.GITHUB_TOKEN }}
                       publish_dir: ./public
             ```
+        ***You can find this yaml in the Hugo Docs, but I had to add lines 10-11 to get this working.***
 7. Remember how I mentioned that github pages wants to publish from your `main` branch? Let's change that:
     * On your github repo, click Settings, then Pages
     * Under Build and Deployment, select `gh-pages`
@@ -93,3 +193,4 @@ Here's what I did - this assumes you have a linux environment you're going to wo
 Check the `Actions` tab on your Github repo - you should see an action with the same name as your commit comment - this is running the workflow we defined above.
 If that's erroring, you should probably fix it ;) Subsequent to that you should see Github's `pages build and deployment` action - that's the Github Pages magic that actually publishes your site.
 
+ -->
