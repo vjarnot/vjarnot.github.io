@@ -1,5 +1,5 @@
 ---
-tags: ["Development", "Github", "Go"]
+tags: ["git", "go", "hugo"]
 title: "Github Pages and Hugo"
 date: "2023-02-11"
 author: "Voytek Jarnot"
