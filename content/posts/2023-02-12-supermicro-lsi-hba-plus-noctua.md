@@ -8,7 +8,7 @@ description: "LSI-based HBAs are designed for the airflow of a servier chassis, 
 
 ## Supermicro LSI HBA Fan Addition
 
-When I initially [installed my eBay-acquired HBA to flash its firmware]({{< ref "2023-02-11-lsi-firmware-flashing.md" >}}),
+When I initially [installed my eBay-acquired HBA to flash its firmware]({{<ref "2023-02-11-lsi-firmware-flashing.md">}}),
  I noticed after a bit that the heatsink was *very* hot to the touch. 
 My infrared thermometer read the heatsink at over 135° F, so the heatsink was approaching 60° C; the chip will be - obviously - hotter than the heatsink.
 **This was at idle with no disks plugged in.** I've read that these LSI chips would ultimately prefer a life at or below 55° C, so I've added a fan to my HBA.
