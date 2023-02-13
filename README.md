@@ -1,1 +1,1 @@
-Blog
+https://vjarnot.github.io/
