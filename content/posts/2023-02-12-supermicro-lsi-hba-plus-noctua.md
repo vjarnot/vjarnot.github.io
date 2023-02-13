@@ -3,7 +3,7 @@ tags: ["nas", "hba", "lsi", "9300-8i"]
 title: "Supermicro AOC-S3008L-L8E + Noctua NF-A4x20"
 date: "2023-02-12"
 author: "Voytek Jarnot"
-description: "LSI-based HBAs are designed for the airflow of a servier chassis, not a repurposed desktop PC. They run hot, and - in my opinion - should get a little cooling assistance."
+description: "LSI-based HBAs are designed for the airflow of a server chassis, not a repurposed desktop PC. They run hot, and - in my opinion - should get a little cooling assistance."
 ---
 
 ## Supermicro LSI HBA Fan Addition
