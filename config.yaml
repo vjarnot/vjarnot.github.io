@@ -24,6 +24,7 @@ params:
   description: "My notes in blog form."
 
 # PaperModX
+  useCusomtAnalytics: true
   DisableLanguageSwitch: true
   ShowToc: true
   TocSide: 'left'
