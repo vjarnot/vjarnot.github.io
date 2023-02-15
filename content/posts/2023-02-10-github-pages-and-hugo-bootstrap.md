@@ -7,7 +7,7 @@ description: "These are the steps I followed to get a basic almost-zero-effort b
 ---
 
 ## Extremely-basic Hugo + Github Pages Step-by-step Guide
-
+ 
 ### Background
 * https://pages.github.com/
 * https://gohugo.io/getting-started/quick-start/
