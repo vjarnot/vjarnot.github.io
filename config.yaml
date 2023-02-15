@@ -18,7 +18,7 @@ permalinks:
   post: '/post/:year/:month/:day/:slug/'
 
 params:
-  # env: 'production'
+  env: 'production'
   author: 'Voytek Jarnot'
   title: 'Zeroth Oughts'
   description: "My notes in blog form."
