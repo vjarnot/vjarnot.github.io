@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on Zeroth Oughts</title><link>https://vjarnot.github.io/posts/</link><description>Recent content in Posts on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Supermicro AOC-S3008L-L8E + Noctua NF-A4x20</title><link>https://vjarnot.github.io/posts/2023-02-12-supermicro-lsi-hba-plus-noctua/</link><pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/2023-02-12-supermicro-lsi-hba-plus-noctua/</guid><description>LSI-based HBAs are designed for the airflow of a server chassis, not a repurposed desktop PC. They run hot, and - in my opinion - should get a little cooling assistance.</description><content:encoded><![CDATA[<h2 id="supermicro-lsi-hba-fan-addition">Supermicro LSI HBA Fan Addition</h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on Zeroth Oughts</title><link>https://vjarnot.github.io/posts/</link><description>Recent content in Posts on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Modding the HP Z Turbo G2 M.2 PCIe Adapter</title><link>https://vjarnot.github.io/posts/2023-02-27-hp-zturbog2-modding/</link><pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/2023-02-27-hp-zturbog2-modding/</guid><description>This HP card mounts in a PCIe expansion slot and provides a M.2 NVME socket. But then it gets weird - HP locked these so they could only be used with HP Z4x0s. Or did they?</description><content:encoded><![CDATA[<h2 id="modding-the-hp-z-turbo-g2-m2-pcie-adapter">Modding the HP Z Turbo G2 M.2 PCIe Adapter</h2>
+<p><img loading="lazy" src="/posts/2023-02-27-hp-zturbog2-modding/hp-card-finished.jpg" type="" alt="The End Result"  /></p>
+<h3 id="why-though">Why, though?</h3>
+<p>PCIe cards which take a NVME &lsquo;drive&rsquo; - allowing you to add NVME storage even if you&rsquo;re out of M.2 slots (or never had any) - aren&rsquo;t rare or expensive.
+They tend to run in the $50 range. The HP card in question here is about a decade old and can be had for about $12 on eBay. However, <strong>however</strong>, <em><strong>HOWEVER</strong></em>: HP -
+in their infinite idiocy - actually spent money and time making sure this particular card wouldn&rsquo;t work outside of a HP Z4xx workstation.</p>
+<p>I <em>intentionally</em> purchased one of these locked cards on eBay - not for the savings - they&rsquo;re not significant enough to take a gamble on used hardware. No, <strong>I bought this
+card specifically due to this forum post:</strong> <a href="https://forums.servethehome.com/index.php?threads/need-help-with-hp-z-turbo-drive-g2-512gb.21195/" target="_blank" rel="noopener">https://forums.servethehome.com/index.php?threads/need-help-with-hp-z-turbo-drive-g2-512gb.21195/</a>
+</p>
+<p>This, folks, is what made/makes the internet wonderful: a ludicrously niche and esoteric problem posted on a forum, with an absolutely mind-boggling solution posted almost immediately thereafter.</p>
+<p>Allow me to quote obrith from the link above:</p>
+<blockquote>
+<p>We ordered a batch of Z420&rsquo;s in with these cards and some users didn&rsquo;t want the PCIe slot taken up so we ended up with pulls we wanted to use elsewhere.
+You have to remove the Q1 transistor. The card just constantly resets unless the computer sends a command to stop resetting (only the listed HP models will do that)
+unless you physically disable the &lsquo;feature&rsquo;.</p>
+</blockquote>
+<p>Seriously though, <a href="https://forums.servethehome.com/index.php?threads/need-help-with-hp-z-turbo-drive-g2-512gb.21195/" target="_blank" rel="noopener">read the thread</a>
+, it really <em>is</em> what makes the internet great.</p>
+<p>So, why? That&rsquo;s why - to actively enjoy and support this type of information exchange and hardware hacking.</p>
+<h3 id="so-whats-the-modification">So, what&rsquo;s the modification?</h3>
+<p><img loading="lazy" src="/posts/2023-02-27-hp-zturbog2-modding/Inkedhp-card-before_LI.jpg" type="" alt="HP NVME Card Before"  /></p>
+<p>That circled component has to go. I don&rsquo;t have pictures of the process because a) I only have two hands and b) nobody should have to watch me wield a soldering iron.
+That said, the process is relatively simple - heat up the connections (3 in this case) with the soldering iron tip, and simultaneously pull on the component (tweezers come in handy).</p>
+<p><img loading="lazy" src="/posts/2023-02-27-hp-zturbog2-modding/Inkedhp-card-after_LI.jpg" type="" alt="HP NVME Card After"  /></p>
+<h3 id="results-results">Results? Results!</h3>
+<p>It works! This part is very boring - the card does what it is supposed to do. I bought this card to go into a computer that only has a PCIe 2.0 x4 slot available, so I bought a
+very cheap NVME drive for it, because I won&rsquo;t end up getting full NVME speeds from PCIe 2.0 anyway, therefore the drive doesn&rsquo;t need to be particularly fast. Fast for an NVME, that is, this
+thing is still hugely faster than SATA SSDs. So this benchmark was less about speed, and more about whether it works or not:</p>
+<p><img loading="lazy" src="/posts/2023-02-27-hp-zturbog2-modding/2023-02-28-155913-crystaldiskmark-hpnvmekingston.png" type="" alt="CrystalDiskMark Results"  /></p>
+]]></content:encoded></item><item><title>Supermicro AOC-S3008L-L8E + Noctua NF-A4x20</title><link>https://vjarnot.github.io/posts/2023-02-12-supermicro-lsi-hba-plus-noctua/</link><pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/2023-02-12-supermicro-lsi-hba-plus-noctua/</guid><description>LSI-based HBAs are designed for the airflow of a server chassis, not a repurposed desktop PC. They run hot, and - in my opinion - should get a little cooling assistance.</description><content:encoded><![CDATA[<h2 id="supermicro-lsi-hba-fan-addition">Supermicro LSI HBA Fan Addition</h2>
 <p>When I initially <a href="https://vjarnot.github.io/posts/2023-02-11-lsi-firmware-flashing/">installed my eBay-acquired HBA to flash its firmware</a>
 ,
 I noticed after a bit that the heatsink was <em>very</em> hot to the touch.
