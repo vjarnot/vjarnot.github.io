@@ -1,4 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>hardware on Zeroth Oughts</title><link>https://vjarnot.github.io/tags/hardware/</link><description>Recent content in hardware on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/tags/hardware/index.xml" rel="self" type="application/rss+xml"/><item><title>Modding the HP Z Turbo G2 M.2 PCIe Adapter</title><link>https://vjarnot.github.io/posts/2023-02-27-hp-zturbog2-modding/</link><pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/2023-02-27-hp-zturbog2-modding/</guid><description>This HP card mounts in a PCIe expansion slot and provides a M.2 NVME socket. But then it gets weird - HP locked these so they could only be used with HP Z4x0s. Or did they?</description><content:encoded><![CDATA[<h2 id="modding-the-hp-z-turbo-g2-m2-pcie-adapter">Modding the HP Z Turbo G2 M.2 PCIe Adapter</h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>hardware on Zeroth Oughts</title><link>https://vjarnot.github.io/tags/hardware/</link><description>Recent content in hardware on Zeroth Oughts</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 28 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vjarnot.github.io/tags/hardware/index.xml" rel="self" type="application/rss+xml"/><item><title>Kingston NV2 (HP Z Turbo G2 M.2 PCIe Adapter) vs onboard NVME</title><link>https://vjarnot.github.io/posts/2023-02-28-hpnvme-vs-onboard/</link><pubDate>Tue, 28 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/2023-02-28-hpnvme-vs-onboard/</guid><description>Tested two fast drives and a slow drive. CrystalDiskMark numbers which aren&amp;#39;t good benchmarks, but they&amp;#39;ll be funny to re-read in 10-20 years.</description><content:encoded><![CDATA[<p><em>Disclaimer: These are not real benchmarks, these are some adhoc numbers for my personal amusement. These are the result of 1 run per drive on my machine, there was no attempt
+to do multiple runs or otherwise control for any variables.</em></p>
+<h2 id="sk-hynix-p41-asus-z790-cpu-nvme">SK Hynix P41 (ASUS Z790 CPU NVME)</h2>
+<p>This is considered the current top dog in the consumer NVME space. I&rsquo;m certain that PCIe 5 versions will outperform it relatively soon, but it&rsquo;s plenty fast at the start of 2023.
+SK Hynix advertises 7,000 MB/s sequential read and 6,500 MB/s sequential write; 1,200 TBW durability-wise.</p>
+<p><img loading="lazy" src="/posts/2023-02-28-hpnvme-vs-onboard/2023-02-28-160531-crystaldiskmark-skhynixp41.png" type="" alt="P41"  /></p>
+<h2 id="wd-sn850x-asus-z790-chipset-nvme">WD SN850X (ASUS Z790 Chipset NVME)</h2>
+<p>This is the just-as-good or almost-as-good contender to the P41, depending on who you read. Western Digital advertises 7,300 MB/s sequential read and 6,350 MB/s sequential write.</p>
+<p><img loading="lazy" src="/posts/2023-02-28-hpnvme-vs-onboard/2023-02-28-161106-crystaldiskmark-wdsn850x.png" type="" alt="SN850X"  /></p>
+<h2 id="kinston-nv2-hp-z-turbo-g2-m2-pcie-adapter">Kinston NV2 (HP Z Turbo G2 M.2 PCIe Adapter)</h2>
+<p>One can compare the above two NVME cards, whereas this one is in a different class. I intentionally went bargain hunting, since the <a href="https://vjarnot.github.io/posts/2023-02-27-hp-zturbog2-modding/">HP PCIe NVME adapter</a>
+ is going into a decade-old
+PC which only has a PCIe 2.0 slot available, so speeds will be limited by that interface rather than the NVME drive itself. Kingston advertises 3,500 MB/s sequential read speed. You can see
+that this drive does indeed have less raw throughput than those above, but - for random-access workloads - it&rsquo;s really keeping up quite well.</p>
+<p><img loading="lazy" src="/posts/2023-02-28-hpnvme-vs-onboard/2023-02-28-155913-crystaldiskmark-hpnvmekingston.png" type="" alt="NV2"  /></p>
+<hr>
+<h4 id="amazon-links-in-case-youre-here-shopping-for-some-reason">Amazon links in case you&rsquo;re here shopping for some reason:</h4>
+<ul>
+<li><a href="https://amzn.to/3ZaxG06" target="_blank" rel="noopener">SK Hynix P41</a>
+</li>
+<li><a href="https://amzn.to/3ZpAret" target="_blank" rel="noopener">WD SN850X</a>
+</li>
+<li><a href="https://amzn.to/3Z9CPWq" target="_blank" rel="noopener">Kingston NV2</a>
+</li>
+</ul>
+]]></content:encoded></item><item><title>Modding the HP Z Turbo G2 M.2 PCIe Adapter</title><link>https://vjarnot.github.io/posts/2023-02-27-hp-zturbog2-modding/</link><pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate><guid>https://vjarnot.github.io/posts/2023-02-27-hp-zturbog2-modding/</guid><description>This HP card mounts in a PCIe expansion slot and provides a M.2 NVME socket. But then it gets weird - HP locked these so they could only be used with HP Z4x0s. Or did they?</description><content:encoded><![CDATA[<h2 id="modding-the-hp-z-turbo-g2-m2-pcie-adapter">Modding the HP Z Turbo G2 M.2 PCIe Adapter</h2>
 <p><img loading="lazy" src="/posts/2023-02-27-hp-zturbog2-modding/hp-card-finished.jpg" type="" alt="The End Result"  /></p>
 <h3 id="why-though">Why, though?</h3>
 <p>PCIe cards which take a NVME &lsquo;drive&rsquo; - allowing you to add NVME storage even if you&rsquo;re out of M.2 slots (or never had any) - aren&rsquo;t rare or expensive.
