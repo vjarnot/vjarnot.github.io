@@ -1,6 +1,7 @@
 baseURL: 'https://vjarnot.github.io/'
 title: 'Zeroth Oughts'
 theme: 'PaperModX'
+enableRobotsTXT: true
 enableEmoji: true
 
 outputs:
